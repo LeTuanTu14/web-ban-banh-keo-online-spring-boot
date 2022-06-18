@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Header</title>
+
+<!-- Google Font -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+	rel="stylesheet" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+	rel="stylesheet" />
+
+<!-- Css Styles -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	type="text/css" />
+<link rel="stylesheet" th:href="@{/css/flaticon.css}" type="text/css" />
+<link rel="stylesheet" th:href="@{/css/barfiller.css}" type="text/css" />
+<link rel="stylesheet" th:href="@{/css/magnific-popup.css}"
+	type="text/css" />
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"
+	type="text/css" />
+<link rel="stylesheet" th:href="@{/css/elegant-icons.css}"
+	type="text/css" />
+<link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css" />
+<link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"
+	type="text/css" />
+<link rel="stylesheet" th:href="@{/css/slicknav.min.css}"
+	type="text/css" />
+<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+</head>
+
+<body>
+	<div th:fragment="myheader">
+		<!-- Page Preloder -->
+		<div id="preloder">
+			<div class="loader"></div>
+		</div>
+
+		<!-- Offcanvas Menu Begin -->
+		<div class="offcanvas-menu-overlay"></div>
+		<div class="offcanvas-menu-wrapper">
+			<div class="offcanvas__cart">
+				<div class="offcanvas__cart__links">
+					<a href="#" class="search-switch"><img
+						th:src="@{img/icon/search.png}" alt="" /></a> <a
+						th:href="@{/wisslist}"><img
+						th:src="@{/img/icon/heart.png}" alt="" /></a>
+				</div>
+				<div class="offcanvas__cart__item">
+					<a href="@{/shoping-cart}"><img
+						th:src="@{/img/icon/cart.png}" alt="" /> <span>0</span></a>
+					<div class="cart__price">
+						Cart: <span>$0.00</span>
+					</div>
+				</div>
+			</div>
+			<div class="offcanvas__logo">
+				<a th:href="@{/home}"><img th:src="@{/img/logo.png}" alt="" /></a>
+			</div>
+			<div id="mobile-menu-wrap"></div>
+			<div class="offcanvas__option">
+				<ul>
+
+					<li><a href="#">Sign in</a> <span class="arrow_carrot-down"></span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- Offcanvas Menu End -->
+
+		<!-- Header Section Begin -->
+		<header class="header">
+			<div class="header__top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="header__top__inner">
+								<div class="header__top__left">
+									<ul>
+										<li><a th:href="@{/login}">Đăng nhập</a> <span
+											class="arrow_carrot-down"></span></li>
+										<li>Hello! <span sec:authentication="name"
+											style="margin-left: 5px; font-style: normal; color: black;"></span>
+											<ul>
+												<form th:action="@{/logout}" method="post">
+													<input type="submit" value="Logout" class="btn btn-warning" />
+												</form>
+											</ul>
+										</li>
+
+									</ul>
+								</div>
+								<div class="header__logo">
+									<a th:href="@{/home}"><img
+										th:src="@{/img/logo.png}" alt="" /></a>
+								</div>
+								<div class="header__top__right">
+									<div class="header__top__right__links">
+										<a href="#" class="search-switch"><img
+											th:src="@{/img/icon/search.png}" alt="" /></a>
+										<a th:href="@{/wisslist}"><img
+											th:src="@{/img/icon/heart.png}" alt="" /></a>
+									</div>
+									<div class="header__top__right__cart">
+										<a th:href="@{/cart}"><img
+											th:src="@{/img/icon/cart.png}" alt="" /> <span id="numCart"
+											th:text="${session.myCartNum}" th:unless="${session == null}"></span></a>
+										<div class="cart__price">
+											Cart: <span id="totalCart" th:text="${session.myCartTotal}"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="canvas__open">
+						<i class="fa fa-bars"></i>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<nav class="header__menu mobile-menu">
+							<ul>
+								<li class="active"><a th:href="@{/home}">Home</a></li>
+
+								<li><a th:href="@{/shop}">Shop</a></li>
+
+								<li><a th:href="@{/contact}">Contact</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
+		<!-- Header Section End -->
+	</div>
+</body>
+</html>

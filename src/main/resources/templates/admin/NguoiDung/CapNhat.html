@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Sửa người dùng</title>
+
+<!-- Mobile Specific Metas -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- Font-->
+<link rel="stylesheet" type="text/css" th:href="@{/css/roboto-font1.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/fonts/font-awesome-5/css/fontawesome-all.min.css}">
+<!-- Main Style Css -->
+<link rel="stylesheet" th:href="@{/css/sua.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	type="text/css">
+</head>
+<body class="form-v5">
+	<div class="page-content">
+		<div class="form-v5-content">
+			<form class="form-detail" th:action="@{http://localhost:8080/admin/nguoidung/save}" th:object="${nguoidung}" method="POST">
+				<h2>Sửa Thông Tin Người Dùng</h2>
+				<div class="form-row">
+					<input type="hidden" th:value="${nguoidungs.maKH}" name="maKH">
+				</div>
+				<div class="form-row">
+					<label for="full-name">Tên Khách Hàng</label> <input type="text"
+						name="tenKH" id="full-name" class="input-text"
+						placeholder="Tên khách hàng" required th:value="${nguoidungs.tenKH}"> <i class="fas fa-user" aria-hidden="true"></i>
+				</div>
+				<div class="form-row">
+					<label for="full-name">Số Điện Thoại</label> <input type="text"
+						name="sdt" id="sdt" class="input-text"
+						placeholder="Số điện thoại" required th:value="${nguoidungs.sdt}"> <i class="fa fa-phone"  aria-hidden="true"></i>
+				</div>
+				<div class="form-row">
+					<label for="full-name">Địa Chỉ</label> <input type="text"
+						name="diaChi" id="diaChi" class="input-text"
+						placeholder="Địa chỉ" required th:value="${nguoidungs.diaChi}"> <i class="fas fa-home" aria-hidden="true"></i>
+				</div>
+				<div class="form-row">
+					<label for="your-email">Email</label> <input type="text"
+						name="email" id="email" class="input-text"
+						placeholder="Your Email" required
+						pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}" th:value="${nguoidungs.email}"> <i
+						class="fas fa-envelope" aria-hidden="true"></i>
+				</div>
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register"
+						value="Cập nhật">
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

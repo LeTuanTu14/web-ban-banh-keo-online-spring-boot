@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Quản lý khách hàng</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Css Styles -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	type="text/css">
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" th:href="@{css/table.css}">
+
+</head>
+<body>
+	<section class="ftco-section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="form-group" style="width: 100px">
+						<label for="">&#160;</label> <a type="button"
+							class="form-control btn btn-warning" href="/admin/nguoidung">Quay lại</a>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					
+				</div>
+
+				<div class="col-lg-2"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="table-wrap">
+						<table class="table">
+							<thead class="thead-dark">
+								<tr>
+									<th style="width: 2%"></th>
+									<th style="width: 15%">Mã Khách Hàng</th>
+									<th style="width: 25%">Tên Tài Khoản</th>
+									<th style="width: 10%">Quyền</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="alert" role="alert">
+									<th></th>
+									<th scope="row" th:text="${kh}"></th>
+									<td th:text="${taikhoan.tenTK}"></td>
+									<td th:text="${taikhoan.role}"></td>
+									
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/table.js"></script>
+
+</body>
+</html>
+

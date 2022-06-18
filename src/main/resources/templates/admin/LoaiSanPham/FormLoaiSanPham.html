@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Sản Phẩm</title>
+<!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/flaticon.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/barfiller.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+
+	<div class="container-fluid" style="background-color: #fff;padding-top: 20px;">
+	
+	<button type="button" class="btn btn-primary" onClick="window.location.href='http://localhost:8080/admin/loaisanpham'">Quay lại</button>
+
+		<!-- Row input -->
+		<div class="row">
+			<div class="col-lg-3"></div>
+
+			<div class="col-lg-6">
+				<h2 style="text-align: center;" id='formTitle'><span th:text="${formTitle}"></span></h2>
+				<form action="#" th:action="@{/admin/loaisanpham/save}"
+						 th:object="${loaisanpham}" method="POST">
+
+					<!-- Add hidden form field to handle update -->
+					<input type="hidden" th:field="*{maLoaiSP}" />
+
+					<div class="form-group">
+						<label>Loại Sản Phẩm:</label>
+						<input  type="text" th:field="*{tenLoaiSP}" class="form-control" />
+						<div class="alert alert-warning" th:if="${#fields.hasErrors('tenLoaiSP')}" th:errors="*{tenLoaiSP}"></div>
+					</div>
+
+					
+					
+
+
+					<button type="submit" class="btn btn-success"><span th:text="${formButton}"></span></button>
+					<button type="button" class="btn btn-danger" onClick="window.location.href='http://localhost:8080/admin/loaisanpham'">Hủy</button>
+
+				</form>
+
+			</div>
+
+			<div class="col-lg-3"></div>
+		</div>
+
+		
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Tạo tài khoản</title>
+
+<!-- Mobile Specific Metas -->
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<!-- Font-->
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/roboto-font1.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/fonts/font-awesome-5/css/fontawesome-all.min.css}">
+<!-- Main Style Css -->
+<link rel="stylesheet" th:href="@{/css/sua.css}" />
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	type="text/css">
+</head>
+<body class="form-v5">
+	<div class="page-content">
+		<div class="form-v5-content">
+
+			<form class="form-detail" th:action="@{/registration/save}"
+				th:object="${userData}" method="POST">
+				<h2>Tạo tài khoản</h2>
+				<div class="form-row alert alert-danger"
+					th:if="${#fields.hasErrors('*')}">
+					<p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+				</div>
+				<!-- <div class="form-row">
+					<input type="hidden" th:value="${nguoidungs.maKH}" name="maKH">
+				</div> -->
+				<!-- <div th:if="${tenTK}" class="form-row">
+					<div class="alert alert-info">Đăng ký tài khoản thành công!</div>
+				</div> -->
+				<div class="form-row">
+					<label for="full-name">Tên Đăng Nhập</label> <input type="text"
+						name="tenTK" id="full-name" class="input-text"
+						placeholder="Tên đăng nhập" required> <i
+						class="fas fa-user" aria-hidden="true"></i>
+				</div>
+				<div class="form-row">
+					<label for="full-name">Mật khẩu</label> <input type="password"
+						name="matKhau" id="full-name" class="input-text"
+						placeholder="Mật khẩu" required> <i class="fas fa-key"
+						aria-hidden="true"></i>
+				</div>
+				<div class="form-row">
+					<input type="hidden" name="role" id="role" class="input-text"
+						th:value="USER">
+				</div>
+				<div class="form-row">
+					<label for="full-name">Xác nhận mật khẩu</label> <input
+						type="password" name="xacNhanMatKhau" id="full-name"
+						class="input-text" placeholder="Xác nhận mật khẩu" required>
+					<i class="fas fa-key" aria-hidden="true"></i>
+				</div>
+				<div class="form-row">
+					<label for="full-name">Tên Khách Hàng</label> <input type="text"
+						name="tenKH" id="full-name" class="input-text"
+						placeholder="Tên khách hàng" required> <i
+						class="fas fa-user" aria-hidden="true"></i>
+				</div>
+				<div class="form-row">
+					<label for="full-name">Số Điện Thoại</label> <input type="text"
+						name="sdt" id="sdt" class="input-text"
+						placeholder="Số điện thoại (Bắt đầu là 0 và có 10 số)" required
+						pattern="((09|03|07|08|05)+([0-9]{8}))"> <i
+						class="fa fa-phone" aria-hidden="true"></i>
+				</div>
+				<div class="form-row">
+					<label for="full-name">Địa Chỉ</label> <input type="text"
+						name="diaChi" id="diaChi" class="input-text" placeholder="Địa chỉ"
+						required> <i class="fas fa-home" aria-hidden="true"></i>
+				</div>
+				<div class="form-row">
+					<label for="your-email">Email</label> <input type="text"
+						name="email" id="email" class="input-text"
+						placeholder="Your Email" required
+						pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"> <i
+						class="fas fa-envelope" aria-hidden="true"></i>
+				</div>
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register"
+						value="Tạo tài khoản">
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

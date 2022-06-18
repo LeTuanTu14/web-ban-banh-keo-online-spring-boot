@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Chi tiết Hóa đơn</title>
+<!-- Google Font -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+	rel="stylesheet">
+
+<!-- Css Styles -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/flaticon.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/barfiller.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/magnific-popup.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/elegant-icons.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/slicknav.min.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</head>
+<script type="text/javascript">
+	function test() {
+		var abc = document.getElementById("full-name").value;
+		alert("Typed text is: " + abc);
+		return false;
+	}
+	$(document)
+			.ready(
+					function() {
+						$("#capNhatHD")
+								.click(
+										function() {
+											var ma = $("#maHD").html();
+											var tt = $("#trangthai").val();
+											location
+													.replace("http://localhost:8080/admin/hoadon/capnhathoadon?ma="
+															+ ma
+															+ "&trangthai="
+															+ tt);
+										});
+					});
+</script>
+<body class="form-v5">
+	<div class="page-content">
+		<div class="form-v5-content">
+			<button type="button" class="btn btn-warning"
+				onClick="window.location.href='http://localhost:8080/admin/hoadon'">Quay
+				lại</button>
+
+			<h2 style="color: Orange; font-family: verdana; text-align: center">Chi
+				tiết hóa Đơn</h2>
+
+			<hr>
+			<div class="row">
+				<div class="col-lg-1"></div>
+				<div class="col-lg-3">
+					<h5 style="color: #4169E1">Thông tin khách hàng</h5>
+
+					<table>
+						<tr>
+							<td><span>Mã khách hàng: </span></td>
+							<td><span th:text="${listHoaDon.khachHang.maKH}"></span></td>
+						</tr>
+
+						<tr>
+							<td><span>Họ và tên: </span></td>
+							<td><span th:text="${listHoaDon.khachHang.tenKH}"></span></td>
+						</tr>
+
+						<tr>
+							<td><span>Địa chỉ: </span></td>
+							<td><span th:text="${listHoaDon.khachHang.diaChi}"></span></td>
+						</tr>
+
+						<tr>
+							<td><span>Số điện thoại: </span></td>
+							<td><span th:text="${listHoaDon.khachHang.sdt}"></span></td>
+						</tr>
+
+						<tr>
+							<td><span>Email </span></td>
+							<td><span th:text="${listHoaDon.khachHang.email}"></span></td>
+						</tr>
+
+					</table>
+
+				</div>
+				<div class="col-lg-5"></div>
+				<div class="col-lg-3">
+					<h5 style="color: #4169E1">Thông tin hóa đơn</h5>
+					<table>
+						<tr>
+							<td><span>Mã HĐ: </span></td>
+							<td><span th:text="${listHoaDon.maHD}" id="maHD"></span></td>
+						</tr>
+
+						<tr>
+							<td><span>Ngày lập: </span></td>
+							<td><span th:text="${listHoaDon.ngayLapDat}"></span></td>
+						</tr>
+
+						<tr>
+							<td><span>Ngày giao: </span></td>
+							<td><span th:text="${listHoaDon.ngayLapGiao}"></span></td>
+						</tr>
+
+						<tr>
+							<td><span>SĐT Người nhận: </span></td>
+							<td><span th:text="${listHoaDon.sdtNguoiNhan}"></span></td>
+						</tr>
+
+						<tr>
+							<td><span>Tên Người nhận: </span></td>
+							<td><span th:text="${listHoaDon.nguoiNhan}"></span></td>
+						</tr>
+
+					</table>
+
+				</div>
+			</div>
+			<!--  -->
+			<div class="row" style="padding-top: 20px">
+				<div class="col-lg-12">
+					<table class="table ">
+						<thead class="thead-dark">
+							<tr>
+								<th>STT</th>
+								<th>Sản phẩm</th>
+								<th>Hình ảnh</th>
+								<th>Số lượng</th>
+								<th>Đơn giá</th>
+								<th>Giá</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="alert" role="alert"
+								th:each="tempHoaDon, state :${chitiet}">
+								<th scope="row" th:text="${state.count}"></th>
+								<td th:text="${tempHoaDon.sanPham.tenSP}"></td>
+								<td><img th:src="'http://localhost:8080/'+${tempHoaDon.sanPham.hinhAnh}"
+									style="width: 70px; height: 70px;" /></td>
+								<td th:text="${tempHoaDon.soLuong}"></td>
+								<td th:text="${tempHoaDon.sanPham.donGia}"></td>
+								<td th:text="${tempHoaDon.donGia}"></td>
+							</tr>
+						</tbody>
+
+					</table>
+
+				</div>
+				<h4
+					style="color: red; margin-left: 40px; margin-top: 10px; margin-bottom: 10px">
+					Tổng tiền: <span th:text="${listHoaDon.tongTien}"> </span> USD
+				</h4>
+			</div>
+			<div class="row">
+				<div class="col-lg-2"></div>
+				<div class="col-lg-2 text-right">
+					<span><b>Trạng thái HD: </b></span>
+				</div>
+				<div class="col-lg-4">
+
+					<select class="form-control" id="trangthai" th:field="${listHoaDon.trangThai}">
+						<option value="Chờ xử lý" class="form-control">Chờ xử lý</option>
+						<option value="Xác nhận có hàng" class="form-control">Xác
+							nhận có hàng</option>
+						<option value="Đang giao hàng" class="form-control">Đang
+							giao hàng</option>
+						<option value="Đã nhận hàng" class="form-control">Đã nhận
+							hàng</option>
+					</select>
+
+				</div>
+				<div class="col-lg-1">
+					<input class="btn btn-success" value="Cập nhật" type="button"
+						id="capNhatHD">
+					</form>
+				</div>
+				<div class="col-lg-3"></div>
+
+			</div>
+		</div>
+	</div>
+</body>
+<!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

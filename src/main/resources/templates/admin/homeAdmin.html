@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+<!-- Google Font -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+	rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+	rel="stylesheet">
+
+<!-- Css Styles -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/flaticon.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/barfiller.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/magnific-popup.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/elegant-icons.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css">
+<link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/slicknav.min.css}"
+	type="text/css">
+<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+
+<style type="text/css">
+.menu:hover {
+	background: black;
+}
+</style>
+</head>
+<body>
+
+	<div style="height: 100%; width: 250px; background-color: #fd7e14;">
+		<div class="row" style="margin-left: 10px; padding-top: 20px">
+			User:
+        <span sec:authentication="name" style="margin-left: 5px"></span>
+        <span style="margin-left: 5px">-</span>
+        <div sec:authentication="principal.authorities" style="margin-left: 5px"></div>
+        
+		</div>
+		<div class="row" style="margin-left: 10px; padding-top: 5px">
+		<form th:action="@{/logout}" method="post"> 
+                <input type="submit" value="Logout" class="btn btn-danger"/> 
+            </form>
+		</div>
+		<div class="row" style="margin-left: 70px; padding-top: 30px">
+			<a th:href=@{/shop}><img src="../img/logo.png" alt=""></a>
+		</div>
+		<div class="row" style="margin: 0px; padding-top: 40px">
+			<div style="width: 100%" class="menu">
+
+				<a
+					style="text-align: center; font-size: 20px; font-weight: bold; color: white; text-decoration: none; padding-left: 30px"
+					th:href=@{/admin/hoadon}>Quản lý hóa đơn</a>
+			</div>
+		</div>
+		<div class="row" style="margin: 0px; padding-top: 30px">
+			<div style="width: 100%" class="menu">
+				<a
+					style="text-align: center; font-size: 20px; font-weight: bold; color: white; text-decoration: none; padding-left: 20px"
+					th:href=@{/admin/nguoidung}>Quản lý người dùng</a>
+			</div>
+		</div>
+		<div class="row" style="margin: 0px; padding-top: 30px">
+			<div style="width: 100%" class="menu">
+				<a
+					style="text-align: center; font-size: 20px; font-weight: bold; color: white; text-decoration: none; padding-left: 25px"
+					th:href=@{/admin/sanpham}>Quản lý sản phẩm</a>
+			</div>
+		</div>
+		<div class="row" style="margin: 0px; padding-top: 30px">
+			<div style="width: 100%" class="menu">
+				<a
+					style="text-align: center; font-size: 20px; font-weight: bold; color: white; text-decoration: none; padding-left: 10px"
+					th:href=@{/admin/loaisanpham}>Quản lý loại sản phẩm</a>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+</html>

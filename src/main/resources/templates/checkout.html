@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zxx">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Cake Template" />
+    <meta name="keywords" content="Cake, unica, creative, html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Cake | Template</title>
+
+    <!-- Google Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      th:href="@{/css/bootstrap.min.css}"
+      type="text/css"
+    />
+    <link rel="stylesheet" th:href="@{/css/flaticon.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/barfiller.css}" type="text/css" />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/magnific-popup.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/font-awesome.min.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/elegant-icons.css}"
+      type="text/css"
+    />
+    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css" />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/owl.carousel.min.css}"
+      type="text/css"
+    />
+    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" />
+  </head>
+
+  <body>
+    <div th:replace="header :: myheader"></div>
+
+    <!-- Breadcrumb Begin -->
+    <div class="breadcrumb-option">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="breadcrumb__text">
+              <h2>Checkout</h2>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="breadcrumb__links">
+              <a href="./index.html">Home</a>
+              <span>Checkout</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- Checkout Section Begin -->
+    <section class="checkout spad">
+      <div class="container">
+        <div class="checkout__form">
+          <form action="#">
+            <div class="row">
+              <div class="col-lg col-md-6">
+                <div class="checkout__order">
+                  <h6 class="order__title">Your order</h6>
+                  <div class="checkout__order__products">
+                    Product <span>Total</span>
+                  </div>
+                  <div th:each="tempCart : ${session.myCartItems}">
+                    <ul class="checkout__total__products">
+                      <li>
+                        <samp
+                          th:text="'+'+${tempCart.value.sanPham.tenSP}"
+                        ></samp
+                        ><span
+                          th:text="'$'+${tempCart.value.sanPham.donGia}"
+                        ></span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <ul class="checkout__total__all">
+                    <li>
+                      Subtotal <span th:text="${session.myCartNum}"></span>
+                    </li>
+                    <li>
+                      Total <span th:text="'$'+${session.myCartTotal}"></span>
+                    </li>
+                  </ul>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adip elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+
+                  <button type="" class="site-btn">
+                    <a th:href="@{/order}"> PLACE ORDER </a>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- Checkout Section End -->
+
+    <div th:insert="footer :: foot"></div>
+  </body>
+</html>

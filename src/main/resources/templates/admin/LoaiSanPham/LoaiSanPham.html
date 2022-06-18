@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+<!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/flaticon.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/barfiller.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/magnific-popup.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/elegant-icons.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/nice-select.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/slicknav.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    
+    <script type="text/javascript">
+    $(document).ready(function () {
+    	const url = "http://localhost:8080/api/loaisanphams";
+    	    	
+        $("#txtSearch").keypress(function (event) {
+            var keycode = event.keyCode ? event.keyCode : event.which;
+            if (keycode == "13") {
+                var tenLSP = $('#txtSearch').val();
+                
+                if(tenLSP==""){
+                	$.get(url, function (data, status) {
+            			$("#tableLoaiSanPham").html("");
+            			for (var i = 0; i < data.length; i++) {
+            				$("#tableLoaiSanPham").append("<tr><td></td><td>"+data[i].maLoaiSP+"</td>"+
+            								"<td>"+data[i].tenLoaiSP+"</td>"+
+            								"<td>"+
+
+            									"<a type='button' class='btn btn-warning table__btn' value='Sửa' href='/admin/loaisanpham/update?maLSP="+data[i].maLoaiSP+"'>Sửa</a>"+
+
+            									"<a type='button' class='btn btn-danger table__btn btnXoa' value='Xóa' href='/admin/loaisanpham/delete?maLSP="+data[i].maLoaiSP+"'  onclick='"+"if (!(confirm('Bạn có chắc chắn muốn xóa không?'))) return false'>Xóa</a>"+
+            									"<input class='maSanPham' value='"+data[i].maLoaiSP+"' type='hidden' /></td></tr>"
+            					
+            				);
+            			}
+            		});
+                }else{
+                	$.get(url+"/"+tenLSP, function (data, status) {
+            			$("#tableLoaiSanPham").html("");
+            			for (var i = 0; i < data.length; i++) {
+            				$("#tableLoaiSanPham").append("<tr><td></td><td>"+data[i].maLoaiSP+"</td>"+
+    								"<td>"+data[i].tenLoaiSP+"</td>"+
+    								"<td>"+
+
+    									"<a type='button' class='btn btn-warning table__btn' value='Sửa' href='/admin/loaisanpham/update?maLSP="+data[i].maLoaiSP+"'>Sửa</a>"+
+
+    									"<a type='button' class='btn btn-danger table__btn btnXoa' value='Xóa' href='/admin/loaisanpham/delete?maLSP="+data[i].maLoaiSP+"'  onclick='if (!(confirm('Bạn có chắc chắn muốn xóa không?'))) return false'>Xóa</a>"+
+    									"<input class='maSanPham' value='"+data[i].maLoaiSP+"' type='hidden' /></td></tr>"
+    					
+    				);
+            			}
+            		});
+                }
+
+    		
+            }
+        });
+    });
+
+    
+    </script>
+</head>
+<body>
+	
+	<div class="container-fluid">
+
+		<div class="container-fluid wrapper_sanpham">
+
+		<!-- Row input -->
+		<div class="row">
+		
+			<div class="col-lg-4">
+				<div class="form-group" style="width: 100px">
+					<label for="exampleInputEmail1">&#160;</label> <a type="button"
+						class="form-control btn btn-primary table__btn"
+						href="/admin/">Quay lại</a>
+				</div>
+			</div>		
+		
+			<div class="col-lg-4 text-center">
+				<div class="form-group">
+					<label for="exampleInputEmail1"><b style="margin-top: 5px">Tìm
+							kiếm</b></label> <input type="text" oninput="typeSearch()"
+						class="form-control" id="txtSearch" aria-describedby="emailHelp"
+						placeholder="Nhập tên loại sản phẩm">
+
+				</div>
+			</div>
+			
+			<div class="col-lg-2"></div>	
+
+			<div class="col-lg-2">
+				<div class="form-group">
+					<label for="exampleInputEmail1">&#160;</label> <a type="button"
+						class="form-control btn btn-primary table__btn"
+						href="/admin/loaisanpham/themloaisanpham">Thêm loại sản
+						phẩm</a>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="row">
+			<div class="table-wrapper-scroll-y my-custom-scrollbar"
+				style="width: 100%">
+				<table class="table">
+
+					<thead class="thead-light">
+						<tr>
+							<th style="width: 2%"></th>
+							<th style="width: 25%">STT</th>
+							<th style="width: 50%">Tên loại sản phẩm</th>
+							<th style="width: 18%"></th>
+						</tr>
+					</thead>
+
+					<tbody id="tableLoaiSanPham">
+
+							<tr th:each="tempLoaiProducts, state : ${listLoaiProduct}">
+								<td><span></span></td>
+								<td><span th:text="${state.count}"></span></td>
+								<td><span th:text="${tempLoaiProducts.tenLoaiSP}"></span></td>
+								
+								<td>
+
+									<a type="button" class="btn btn-warning table__btn"
+									value="Sửa"
+									th:href="@{/admin/loaisanpham/update(maLSP=${tempLoaiProducts.maLoaiSP})}">Sửa</a>
+
+									<a type="button" class="btn btn-danger table__btn btnXoa" value="Xóa" th:href="@{/admin/loaisanpham/delete(maLSP=${tempLoaiProducts.maLoaiSP})}" onclick="if (!(confirm('Bạn có chắc chắn muốn xóa không?'))) return false">Xóa</a>
+									<input class="maLoaiSanPham" th:value="${tempLoaiProducts.maLoaiSP}"type="hidden" /></td>
+							</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<!-- /.container-fluid -->
+	
+</body>
+</html>
